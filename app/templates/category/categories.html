@@ -1,0 +1,68 @@
+{% extends 'layouts/index.html' %}
+{% import 'macros.html' as footer%}
+
+{% block title %}
+<title>Categories</title>
+{% endblock%}
+
+{% block home %} nav-item {% endblock%}
+{% block category %} nav-item active {% endblock%}
+
+{% block body %}
+<!-- inner page section -->
+      <section class="inner_page_head">
+         <div class="container_fuild">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full">
+                     <h3>Categories Grid</h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+<!-- end inner page section -->
+<!-- product section -->
+      <section class="product_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Our <span>Categories</span>
+               </h2>
+            </div>
+            <div class="row">
+               {% for category in categories %}
+               <div class="col-md-4">
+                  <div class="box ">
+                     <div class="option_container">
+                        <div class="options">
+                           <a href="{{url_for('categories.category',id=category.id)}}" class="option1">
+                           View Details
+                           </a>
+                        </div>
+                     </div>
+                     <div class="img-box">
+                        <img src="{{category.img_url}}" alt="">
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           {{category.name}}
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+            <div class="btn-box">
+               <a href="{{url_for('categories.add_category')}}">
+               Add Category
+               </a>
+            </div>
+         </div>
+      </section>
+      <!-- end product section -->
+{% endblock%}
+
+{% block footer %}
+{{footer.footer()}}
+{% endblock%}

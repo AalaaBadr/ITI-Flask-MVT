@@ -1,6 +1,6 @@
 from flask import request, redirect, url_for, render_template
 
-from app.models import Product
+from app.models import Product, Category
 from app.products import product_blueprint
 
 
@@ -23,21 +23,23 @@ def product(id):
 
 @product_blueprint.route('/product/add', methods=['GET', 'POST'], endpoint='add')
 def create():
+    categories = Category.get_categories()
     if request.method == 'POST':
         Product.save_product(request_data=request)
         return redirect(url_for('products.products'))
 
-    return render_template('product/add.html')
+    return render_template('product/add.html', categories=categories)
 
 
 @product_blueprint.route('/product/update/<int:id>', methods=['GET', 'POST'], endpoint='update')
 def update(id):
+    categories = Category.get_categories()
     product = Product.get_product(id)
     if request.method == 'POST':
         Product.update_product(id=id, request_data=request)
         return redirect(url_for('products.product', id=product.id))
 
-    return render_template('product/update.html', product=product)
+    return render_template('product/update.html', product=product, categories=categories)
 
 
 @product_blueprint.route('/product/delete/<int:id>', endpoint='delete')

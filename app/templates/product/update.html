@@ -32,11 +32,21 @@
                         <label for="price" class="form-label">Price</label>
                         <input type="number" class="form-control" placeholder="Enter product price" name="price" id="price" value="{{product.price}}" required />
 
-                        <label for="desc" class="form-label">Description</label>
+                        <label class="form-label mr-2">Category</label>
+                        <select name="category_id" class="form-control">
+                            {% for category in categories %}
+                                {% if category.id == product.category_id %}
+                		            <option value="{{category.id}}" selected>{{category.name}}</option>
+           	 		            {% endif %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="desc" class="form-label mt-3">Description</label>
                         <textarea class="form-control" placeholder="Enter your message" name="desc" id="desc">{{product.desc}}</textarea>
 
                         <label for="file" class="form-label">Image</label>
-                        <input class="form-control-file" type="file" name="file" id="file">
+                        <input class="form-control-file" type="file" name="image" id="file">
 
                         <label class="form-label mr-2">In Stock</label>
                         <select name="instock" aria-label="In Stock">

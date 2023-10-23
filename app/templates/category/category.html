@@ -1,0 +1,92 @@
+{% extends 'layouts/index.html' %}
+{% import 'macros.html' as footer%}
+
+{% block title %}
+<title>{{category.name}}</title>
+{% endblock%}
+
+{% block home %} nav-item {% endblock%}
+
+{% block body %}
+<!-- arrival section -->
+      <section class="arrival_section">
+         <div class="container">
+            <div class="box">
+               <div class="row">
+                  <div>
+                  <img src="{{category.img_url}}" alt="">
+                  </div>
+                  <div class="col-md-6 ml-auto">
+                     <div class="heading_container remove_line_bt mt-2">
+                        <h2>
+                           {{category.name}}
+                        </h2>
+                     </div>
+                     <a class="mr-2" href="{{url_for('categories.update_category',id=category.id)}}">
+                     Update
+                     </a>
+                     <a href="{{url_for('categories.delete_category',id=category.id)}}">
+                     Delete
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end arrival section -->
+<!-- product section -->
+      <section class="product_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Our <span>products</span>
+               </h2>
+            </div>
+            <div class="row">
+               {% for product in products %}
+               <div class="col-sm-6 col-md-4 col-lg-3">
+                  <div class="box postion-relative">
+                     <div class="option_container">
+                        <div class="options">
+                           <a href="{{url_for('products.product',id=product.id)}}" class="option1">
+                           View Details
+                           </a>
+                           <a href="" class="option2">
+                           Add To Cart
+                           </a>
+                        </div>
+                     </div>
+                     {% if product.instock == True %}
+                     <span class="badge bg-white p-1" >In stock</span>
+                     {% else %}
+                     <span class="badge bg-danger p-1">Out of stock </span>
+                     {% endif %}
+                     <div class="img-box">
+                        <img src="{{product.img_url}}" alt="">
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           {{product.name}}
+                        </h5>
+                        <h6>
+                           ${{product.price}}
+                        </h6>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+            <div class="btn-box">
+               <a href="{{url_for('products.add')}}">
+               Add product
+               </a>
+            </div>
+         </div>
+      </section>
+
+
+{% endblock%}
+
+{% block footer %}
+{{footer.footer()}}
+{% endblock%}

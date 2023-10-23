@@ -13,9 +13,9 @@
          <div class="container">
             <div class="box">
                <div class="row">
-                  <div class="">
+                  <div>
                   <img src="{{product.img_url}}" alt="">
-               </div>
+                  </div>
                   <div class="col-md-6 ml-auto">
                      {% if product.instock == True %}
                      <span class="badge" >In stock</span>
@@ -33,6 +33,11 @@
                      <h5 style="margin-bottom: 20px;">
                         ${{product.price}}
                      </h5>
+                     <div class="my-3">
+                        <a class="mr-2" href="{{url_for('categories.category',id=product.category_id)}}">
+                           {{product.category.name}}
+                        </a>
+                     </div>
                      <a class="mr-2" href="{{url_for('products.update',id=product.id)}}">
                      Update
                      </a>

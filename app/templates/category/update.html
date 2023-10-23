@@ -1,0 +1,47 @@
+{% extends 'layouts/index.html' %}
+{% import 'macros.html' as footer%}
+
+{% block title %}
+<title>Categories</title>
+{% endblock%}
+
+{% block home %} nav-item {% endblock%}
+
+{% block body %}
+<section class="inner_page_head">
+    <div class="container_fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Update Category</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- contact section -->
+<section class="why_section layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="full">
+                    <form method="post">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter category name" name="name" id="name" value="{{category.name}}" required />
+
+                        <label for="file" class="form-label">Image</label>
+                        <input class="form-control-file" type="file" name="image" id="file">
+
+                        <input class="my-3" type="submit" value="Update"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end contact section -->
+{% endblock%}
+
+{% block footer %}
+{{footer.footer()}}
+{% endblock%}
