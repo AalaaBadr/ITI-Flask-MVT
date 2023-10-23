@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from app.config import project_config as App_Config
-
+from flask_migrate import Migrate
 from app.models import db
 from app.products import product_blueprint
 
@@ -11,6 +11,7 @@ def create_app(config_name='dev'):
     app.config["SQLALCHEMY_DATABASE_URI"] = Current_App_Config.SQLALCHEMY_DATABASE_URI
     app.config.from_object(Current_App_Config)
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     @app.errorhandler(404)
     def page_not_found(error):
