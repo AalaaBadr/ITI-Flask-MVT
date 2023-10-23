@@ -36,7 +36,7 @@
                   <div class="box postion-relative">
                      <div class="option_container">
                         <div class="options">
-                           <a href="{{url_for('product',id=product.id)}}" class="option1">
+                           <a href="{{url_for('products.product',id=product.id)}}" class="option1">
                            View Details
                            </a>
                            <a href="" class="option2">
@@ -50,7 +50,7 @@
                      <span class="badge bg-danger p-1">Out of stock </span>
                      {% endif %}
                      <div class="img-box">
-                        <img src="{{url_for('static', filename='images/'+product.image)}}" alt="">
+                        <img src="{{product.img_url}}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -65,7 +65,7 @@
                {% endfor %}
             </div>
             <div class="btn-box">
-               <a href="{{url_for('add')}}">
+               <a href="{{url_for('products.add')}}">
                Add product
                </a>
             </div>
